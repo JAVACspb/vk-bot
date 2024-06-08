@@ -2,10 +2,11 @@ server:
   port: 8080
 
 vk:
-  group-id: ""
-  access-token: ""
-  confirmation-code: ""
+  access-token: "vk1.a.ROfCO03l81oZ_zgGykduRfsjum6zyVJLFP7rhAmDsO3KdnL4R9uDbWrMQzVYhZZHtN33t2SD08e8dAgvqslnK2y0UVW2fBUKuMF6IY0OxBLuOQvRutbPs0qAUwQ6hnjM2OIzZX-49DIWTJhHYEV2zDVQur_zYokF6EFXuZ3OymdW9xBbnos_gnKzKA8TRYothihyN7Q4a6ftSCyYtlxMHA"
+  confirmation-code: "a016fda5"
 
+logging:
+  config: src/main/resources/log4j2.xml
 
 
 

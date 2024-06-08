@@ -1,0 +1,33 @@
+   #VK Bot
+
+   ## Описание
+   Бот для ВКонтакте, который повторяет присланный ему текст.
+
+   ## Запуск
+   1. Склонируйте репозиторий
+   2. Установите необходимые зависимости с помощью Maven:
+
+  #Заполнение параметров конфигурации в `src/main/resources/application.yml`:
+
+    yaml
+        vk:
+            access-token: YOURACCESSTOKEN
+            confirmation-code: YOURCONFIRMATIONCODE
+
+
+  #Запустите приложение с помощью команды:
+
+    sh
+        mvn spring-boot:run
+
+   #Использование ngrok для локального тестирования
+   ❯ brew install ngrok/ngrok/ngrok
+   ❯ ngrok config add-authtoken "token" что бы получить токен надо зарегистрироваться на сайте, работает через vpn
+   ❯ ngrok http http://localhost:8080/
+
+
+   #VK
+   1.Сздать сообщество в вк
+   2.Обновите Callback API URL в настройках вашего сообщества ВКонтакте на URL, который предоставил ngrok (пример: `http://<your-ngrok-url>.ngrok.io/callback`).
+   3.Сгенерировать токен там же в настройках
+   4.Разрешить отправку сообщения сообществом
