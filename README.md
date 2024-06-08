@@ -26,8 +26,8 @@ mvn spring-boot: запустить
 
 
 5. **Использование ngrok для локального тестирования**
-   - Установите ngrok, используя Homebrew:
-завариваем установку ngrok /ngrok/ngrok
+- Установите ngrok, используя Homebrew:
+ngrok /ngrok/ngrok
 
 - Добавьте authtoken для ngrok:
 добавление в конфигурацию ngrok-authtoken "YOUR_NGROK_TOKEN"
