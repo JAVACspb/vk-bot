@@ -1,9 +1,12 @@
 package com.example.vkbot.controller;
 
-import com.example.vkbot.data.VkMessage;
+import com.example.vkbot.command.CommandRegistr;
+import com.example.vkbot.command.VkCommand;
 import com.example.vkbot.data.VkRequest;
 import com.example.vkbot.service.VkService;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,30 +16,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/callback")
 public class VkController {
 
-    private final VkService vkService;
+    private static final Logger logger = LoggerFactory.getLogger(VkController.class);
+    private final CommandRegistr commandRegistry;
 
-    @Value("${vk.confirmation-code}")
-    private String confirmationCode;
-
-    public VkController(VkService vkService) {
-        this.vkService = vkService;
+    @Autowired
+    public VkController(CommandRegistr commandRegistry, VkService vkService) {
+        this.commandRegistry = commandRegistry;
     }
 
     @PostMapping
     public String receiveEvent(@RequestBody VkRequest vkRequest) {
-        switch (vkRequest.getType()) {
-            case "confirmation" -> {
-                return confirmationCode;
-            }
-            case "message_new" -> {
-                VkMessage message = vkRequest.getObject().getMessage();
-                int peerId = message.getPeerId();
-                String text = message.getText();
-                vkService.sendMessage(peerId, text); // Отправка полученного сообщения обратно
-                return "ok";
-            }
+        logger.info("Received event: {}", vkRequest);
+        String type = vkRequest.getType();
+
+        if (type == null) {
+            logger.warn("Request type is null");
+            return "ok";
         }
-        return "ok";
+
+        VkCommand command = commandRegistry.getCommand(type);
+
+        if (command != null) {
+            return command.execute(vkRequest);
+        } else {
+            logger.warn("Unknown event type: {}", type);
+            return "ok";
+        }
     }
+
 }
+
 

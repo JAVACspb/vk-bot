@@ -11,26 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-//@Service
-//public class VkService {
-//
-//    @Value("${vk.access-token}")
-//    private String accessToken;
-//
-//    private final RestTemplate restTemplate = new RestTemplate();
-//
-//    public void sendMessage(int peerId, String message) {
-//        String url = "https://api.vk.com/method/messages.send";
-//        Map<String, String> params = new HashMap<>();
-//        params.put("peer_id", String.valueOf(peerId));
-//        params.put("message", message);
-//        params.put("random_id", String.valueOf(new Random().nextInt(1000000)));
-//        params.put("access_token", accessToken);
-//        params.put("v", "5.131");
-//        System.out.println(url);
-//        restTemplate.postForEntity(url, params, String.class);
-//    }
-//}
 
 @Service
 public class VkService {
