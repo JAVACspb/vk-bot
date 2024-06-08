@@ -17,7 +17,9 @@
 
 3. **Заполнение параметров конфигурации**
    - В файле `src/main/resources/application.yml` укажите свои данные для доступа к VK API:
-yaml vk: токен доступа: YOURACCESSTOKEN код подтверждения: YOURCONFIRMATIONCODE
+yaml vk: 
+   - токен доступа: YOURACCESSTOKEN 
+   - код подтверждения: YOURCONFIRMATIONCODE
 
 
 4. **Запуск приложения**
@@ -33,7 +35,7 @@ ngrok /ngrok/ngrok
 добавление в конфигурацию ngrok-authtoken "YOUR_NGROK_TOKEN"
 
 - Запустите ngrok, указав порт, на котором работает ваше приложение:
-ngrok http http://localhost:8080 /
+ngrok http http://localhost:8080/
 
 
 6. **Настройка VK**
